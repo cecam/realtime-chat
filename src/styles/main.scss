@@ -1,0 +1,271 @@
+@import './variables.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: $background;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 3vw;
+    background-color: $dark-green;
+
+    &__logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        img {
+            height: 50px;
+            width: auto;
+            margin-right: 10px;
+        }
+    
+        h1 {
+            color: white;
+        }
+    }
+
+}
+
+.content {
+}
+
+.btn {
+    border: solid 1px $blue;
+    background: transparent;
+    color: $blue;
+    cursor: pointer;
+    font-size: 25px;
+    padding: 5px 10px;
+}
+
+.channel {
+    padding: 15px;
+
+    &__messages {
+        min-height: 75vh;
+        margin-bottom: 15px;
+        list-style: none;
+    }
+}
+
+.message {
+    &recibed, &own {
+        display: grid;
+        grid-template-columns: 60px 50%;
+        grid-template-areas:"avatar name"
+                            "avatar text"
+                            ". date";
+        grid-column-gap: 15px;
+        margin: 10px 0;
+        &__avatar {
+            grid-area: avatar;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            clip-path: circle(50% at 50% 50%);
+            width: 60px;
+            height: 60px;
+    
+        }
+    
+        &__name {
+            grid-area: name;
+            display: flex;
+            align-items: center;
+            color: $black;
+            font-size: 20px;
+            font-weight: 600;
+        }
+    
+        &__text {
+            grid-area: text;
+            position: relative;
+            right: 0;
+            max-width: 60%;
+            padding: 5px 15px;
+            border-radius: 10px;
+            background-color: $blue;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        &__date {
+            grid-area: date;
+            padding: 0 15px;
+            font-size: 14px;
+            color: $grey
+        }
+    
+        @media (max-width: 780px) {
+            &__text {
+                max-width: 80%;
+            }
+        }
+    }
+    
+    &own {
+        &__text {
+            background-color: $dark-green;
+        }
+    }
+
+    
+}
+
+.messageForm {
+    position: sticky;
+    bottom: 0;
+    background: $background;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr minmax(50px, 70px);
+    grid-template-rows: 50px;
+    height: 70px;
+    grid-gap: 10px;
+
+    &__input {
+        padding: 0 10px;
+        font-size: 18px;
+        background: $grey;
+        color: $black;
+        border-radius: 15px;
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__btn {
+        border: none;
+        background: $blue;
+        color: white;
+        font-size: 20px;
+        font-weight: 900;
+        cursor: pointer;
+        border-radius: 15px;
+
+        &:disabled {
+            background: $dark-green;
+        }
+    }
+}
+
+.landing {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-areas: "logo info";
+    height: 90.7vh;
+    background: linear-gradient(180deg, rgba(3,53,62,1) 0%, rgba(2,148,165,1) 100%);
+
+    &__logo {
+        grid-area: logo;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        &-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            height: 60%;
+            background: $blue;
+            box-shadow: 0px 23px 26px -14px rgba(4,6,15,1);
+            border-radius: 20px;
+
+            img {
+                max-width: 70%;
+                animation: rotation 2s ease;
+            }
+
+            img:hover {
+                animation: shake 1s ease;
+            }
+
+            @keyframes rotation {
+                0% {
+                   transform: rotate(0deg); 
+                }
+                25% {
+                    transform: rotate(-35deg); 
+                }
+                100% {
+                    transform: rotate(360deg);   
+                }
+            }
+
+            @keyframes shake {
+                0% {
+                    transform: rotate(5deg);
+                }
+                25% {
+                    transform: rotate(-5deg);
+                }
+                50% {
+                    transform: rotate(5deg);
+                }
+                75% {
+                    transform: rotate(-5deg);
+                }
+                75% {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+    }
+
+    &__info {
+        grid-area: info;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 15px;
+
+        h1, p {
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 40pt;
+            
+            border-bottom: solid 2px white;
+        }
+
+        p {
+            font-size: 15pt;
+            margin-top: 15px;
+        }
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: 100%;
+        grid-template-rows: 40% 60%;
+        grid-template-areas: "info" "logo";
+        height: 87vh;
+
+        &__logo {
+            height: 50vh;
+            
+            &-container {
+                width: 80%;
+                height: 80%;
+            }
+        }
+    }
+}
